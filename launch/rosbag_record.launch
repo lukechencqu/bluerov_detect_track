@@ -1,0 +1,28 @@
+<!-- http://wiki.ros.org/rosbag/Commandline#record -->
+<launch>
+    <node name="record" pkg="rosbag" type="record"
+        args="-o cloud 
+        
+        /zed/zed_node/point_cloud/cloud_registered
+        /tf /tf_static 
+        /clock 
+        /zed/zed_node/left/image_rect_color
+        /zed/zed_node/right/image_rect_color
+        /zed/zed_node/stereo/image_rect_color
+        /zed/zed_node/rgb/camera_info
+        ">
+    </node>
+</launch>
+
+<!-- zed相机基本信息及标定参数 -->
+<!-- tf变换，包括机器人、ZED相机所有完整的tf树！ -->
+<!-- 左右相机矫正畸变后的RGB图像 -->
+
+<!-- /zed/zed_node/depth/camera_info
+/zed/zed_node/left/camera_info
+/zed/zed_node/left_raw/camera_info
+/zed/zed_node/rgb/camera_info
+/zed/zed_node/rgb_raw/camera_info
+/zed/zed_node/right/camera_info
+/zed/zed_node/right_raw/camera_info -->
+

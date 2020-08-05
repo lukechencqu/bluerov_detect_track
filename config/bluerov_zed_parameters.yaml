@@ -1,0 +1,122 @@
+debug_publish: true
+debug_initialize: true
+
+useThread: true
+useKF: false
+hasGT: false
+savePose: true
+useNED: true
+
+frequency: 20
+
+
+Topics:
+  #! bluerov2h ZED
+  cloudTopic: "/zed/zed_node/point_cloud/cloud_registered" 
+  # odomLeaderTopic: "/bluerov2h_leader/pose_gt"
+  # odomFollowerTopic: "/bluerov2h_follower/pose_gt"
+  rectTopic: "/cascade_detection/rov_rect"
+  
+saveCloudDir: "/home/chenlu/log/"
+
+initialization:
+  consecutiveTinyFluctuationTimes: 2
+  poseFluctuationX: 0.03
+  poseFluctuationY: 0.03
+  poseFluctuationZ: 0.03
+
+objectModel:
+  useModelCheck: false
+  # length: 0.11
+  # width: 0.34
+  # height: 0.17
+  length: 0.42
+  width: 0.36
+  height: 0.44  
+  sFactor_min: 0.6 # >= min scale factor * model size
+  sFactor_max: 1.4 # <= max scale factor * model size
+  pFactor: 0.6 # >= proportionality factor * model size
+  number: 500 # >= points number
+  nFactor: 0.6 # >= number factor * reference cloud number
+
+calibration:
+  kx: 1 #1.66 # base frame
+  ky: 1
+  kz: 1
+
+pointcloudFilter:
+  debug: false
+  passthroughFilter: false
+  voxelDownsample: true
+  removeGround: false
+  outlierRemove: true
+
+passthrough_filter:
+  ###########! bluerov2 ZED(rosbag 清华水池)，x朝前
+  useDynamicROI: false
+  setFilterLimits_X1: 0.4
+  setFilterLimits_X2: 3
+  setFilterLimits_Y1: -0.3
+  setFilterLimits_Y2: 0.3
+  setFilterLimits_Z1: -0.05
+  setFilterLimits_Z2: 0.5    
+  ###########! bluerov2 ZED(rosbag 实验室小水池)，x朝前
+  # useDynamicROI: false
+  # setFilterLimits_X1: 0.4
+  # setFilterLimits_X2: 1
+  # setFilterLimits_Y1: -0.3
+  # setFilterLimits_Y2: 0.2
+  # setFilterLimits_Z1: -0.1
+  # setFilterLimits_Z2: 0.3  
+  ##########! bluerov2 ZED，x朝前
+  # setFilterLimits_X1: 0.7
+  # setFilterLimits_X2: 0.8
+  # setFilterLimits_Y1: -0.1
+  # setFilterLimits_Y2: 0.05
+  # setFilterLimits_Z1: -0.2
+  # setFilterLimits_Z2: 0.25     
+
+downsample:
+  setLeafSize: 0.01
+
+OutlierRemoval:
+  setRadiusSearch: 0.05 # radius outlier remove
+  setMinNeighborsInRadius: 20
+  setMeanK: 50 # statistical outlier remove.
+  setStddevMulThresh: 1
+
+ICP:
+  icpMethod: 0 # 0-successive icp, 1-static icp
+  setMaximumIterations: 1
+  setTransformationEpsilon: 0.0000000001
+  setEuclideanFitnessEpsilon: 0.01
+  setMaxCorrespondenceDistance: 1
+  setRANSACIterations: 100
+  
+cluster:
+  clusterTolerance: 0.05
+  clusterMinSize: 200
+  clusterMaxSize: 5000
+  # clusterTolerance: 0.1
+  # clusterMinSize: 100
+  # clusterMaxSize: 5000
+
+frustum:
+  depthMin: 0.5
+  depthMax: 2
+
+cameraIntrinsic:
+# ZED #1 Serial Number -> 24690 left_rect
+  fx: 679.2294311523438
+  fy: 679.2294311523438
+  cx: 620.7433471679688
+  cy: 350.60980224609375
+
+KalmanFilter:
+  axNoise: 0.001
+  ayNoise: 0.001
+  azNoise: 0.001
+  xNoise: 10
+  yNoise: 10
+  zNoise: 10
+  

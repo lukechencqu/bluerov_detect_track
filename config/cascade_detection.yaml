@@ -1,0 +1,44 @@
+debug: true
+
+cascadeName: "/home/chenlu/uuv/src/pcl/cascade/bluerov2heavy_without_subcabin_our_rov_0729.xml"
+# nestedCascadeName: "/home/chenlu/uuv/src/pcl/cascade/cascade4_small.xml"
+nestedCascadeName: "/home/chenlu/uuv/src/pcl/cascade/cascade_nested_0728_2.xml"
+videoName: "/home/chenlu/uuv/src/pcl/video/a1.mp4"
+
+imageAndCameraInfoCallback: true
+
+# Cascade::detectMultiScale()检测器函数参数
+detectMultiScale:
+  # 外层模型
+  minSizeScale: 0.05
+  maxSizeScale: 0.8
+  continuousDetectNum: 50
+  # 内层模型
+  minColSizeScaleNested: 0.6
+  maxColSizeScaleNested: 1.0
+  minRowSizeScaleNested: 0.2
+  maxRowSizeScaleNested: 0.5
+  continuousDetectNumNested: 2
+
+scale: 1.0
+rectNestedScale: 1.0
+
+filterDepthValue: 3
+
+# cascadeName: "../cascade/cascade4.xml"
+# nestedCascadeName: "../cascade/cascade8.xml"
+# videoName: "../video/a1.mp4"
+
+
+# # Cascade::detectMultiScale()检测器函数参数
+# detectMultiScale:
+#   # 外层模型
+#   minSizeScale: 0.05
+#   maxSizeScale: 0.8
+#   continuousDetectNum: 50
+#   # 内层模型
+#   minColSizeScaleNested: 0.6
+#   minRowSizeScaleNested: 0.2
+#   maxColSizeScaleNested: 1.0
+#   maxRowSizeScaleNested: 0.5
+#   continuousDetectNumNested: 10

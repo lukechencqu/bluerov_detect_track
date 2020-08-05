@@ -1,0 +1,87 @@
+
+debug_publish: true
+debug_initialize: true
+
+useThread: true
+useKF: true
+
+frequency: 20
+
+Topics:
+  #! UUV simulator
+  cloudTopic: "/bluerov2h_follower/depth/points2" 
+  # odomLeaderTopic: "/bluerov2h_leader/pose_gt"
+  # odomFollowerTopic: "/bluerov2h_follower/pose_gt"
+
+  #! turtlebot3 waffe
+  # cloudTopic: "/t1/camera/depth/points"
+  # odomLeaderTopic: "/t2/odom"
+  # odomFollowerTopic: "/t1/odom"
+  
+saveCloudDir: "/home/chenlu/log/"
+
+initialization:
+  frameNumSet: 5
+  threshold_X: 0.02
+  threshold_Y: 0.02
+  threshold_Z: 0.02
+
+objectModel:
+  useModelCheck: true
+  length: 0.4
+  width: 0.2
+  height: 0.2
+  factor: 0.7
+  number: 1000
+
+calibration:
+ kx: 1.66 # base frame
+ ky: 1
+ kz: 1  
+
+pointcloudFilter:
+  debug: true
+  passthroughFilter: true
+  voxelDownsample: true
+  removeGround: false
+  outlierRemove: true
+
+passthrough_filter:
+  #! UUV simulator,Z朝前
+  # setFilterLimits_X1: -1
+  # setFilterLimits_X2: 1
+  # setFilterLimits_Y1: -0.5
+  # setFilterLimits_Y2: 0.5
+  # setFilterLimits_Z1: 0.5
+  # setFilterLimits_Z2: 2 
+
+  #! turtlebot3 waffe
+  # setFilterLimits_X1: -1
+  # setFilterLimits_X2: 1
+  # setFilterLimits_Y1: -0.1
+  # setFilterLimits_Y2: 0.5
+  # setFilterLimits_Z1: 0.5
+  # setFilterLimits_Z2: 2 
+
+downsample:
+  setLeafSize: 0.01
+
+OutlierRemoval:
+  setRadiusSearch: 0.05 # radius outlier remove
+  setMinNeighborsInRadius: 50
+  setMeanK: 50 # statistical outlier remove.
+  setStddevMulThresh: 1
+
+ICP:
+  icpMethod: 1 # 0-successive icp, 1-static icp
+  setMaximumIterations: 1
+  setTransformationEpsilon: 0.0000000001
+  setEuclideanFitnessEpsilon: 0.01
+  setMaxCorrespondenceDistance: 1
+  setRANSACIterations: 100
+  
+cluster:
+  clusterTolerance: 0.1
+  clusterMinSize: 100
+  clusterMaxSize: 5000
+  
